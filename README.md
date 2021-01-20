@@ -68,6 +68,26 @@ jobs:
       timeout-minutes: 15
 ```
 
+## Custom installation command
+
+By default this will be using apt-get, brew or pacman depending on your system. If you are using a different package manager, you can specify the `installCommand` parameter.
+
+Here is an example for a centos system:
+
+```yaml
+name: CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+      with:
+        installCommand: "yum install -y tmate openssh-clients"
+```
+
 ## Continue a workflow
 
 If you want to continue a workflow and you are inside a tmate session, just create a empty file with the name `continue` either in the root directory or in the project directory by running `touch continue` or `sudo touch /continue`.

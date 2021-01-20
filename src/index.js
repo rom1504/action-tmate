@@ -9,9 +9,13 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 export async function run() {
   const optionalSudoPrefix = core.getInput('sudo') === "true" ? "sudo " : "";
+  const optionalInstallCommand = core.getInput('installCommand');
   try {
     core.debug("Installing dependencies")
-    if (process.platform === "darwin") {
+    if (optionalInstallCommand !== undefined) {
+        await execShellCommand(optionalInstallCommand);
+    }
+    else if (process.platform === "darwin") {
       await execShellCommand('brew install tmate');
     } else if (process.platform === "win32") {
       await execShellCommand('pacman -Sy --noconfirm tmate');
