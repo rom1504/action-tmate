@@ -57,8 +57,8 @@ export async function run() {
       await sleep(5000)
     }
   } catch (error) {
-    core.debug('failed')
-    core.debug(error.message)
+    core.info('failed')
+    core.info(error.message)
     core.setFailed(error.message);
   }
 }
