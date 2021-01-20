@@ -8,6 +8,7 @@ import { execShellCommand } from "./helpers"
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 export async function run() {
+    console.log('hi')
   const optionalSudoPrefix = core.getInput('sudo') === "true" ? "sudo " : "";
   const installCommand = core.getInput('installCommand');
   try {
@@ -23,6 +24,7 @@ export async function run() {
       await execShellCommand(optionalSudoPrefix + 'apt-get update');
       await execShellCommand(optionalSudoPrefix + 'apt-get install -y tmate openssh-client');
     }
+    console.log('hello')
     core.debug("Installed dependencies successfully");
 
     if (process.platform !== "win32") {
