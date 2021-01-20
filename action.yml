@@ -9,3 +9,7 @@ inputs:
     description: 'If apt should be executed with sudo or without'
     required: false
     default: 'true'
+  optionalInstallCommand:
+    description: 'Custom install command for other package managers'
+    required: false
+    default: ''

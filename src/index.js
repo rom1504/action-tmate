@@ -12,7 +12,7 @@ export async function run() {
   const optionalInstallCommand = core.getInput('installCommand');
   try {
     core.debug("Installing dependencies")
-    if (optionalInstallCommand !== undefined) {
+    if (optionalInstallCommand !== '' && optionalInstallCommand !== undefined) {
         await Promise.race([execShellCommand(optionalInstallCommand), new Promise(resolve => setTimeout(resolve, 60000))]);
     }
     else if (process.platform === "darwin") {
