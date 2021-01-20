@@ -13,7 +13,7 @@ export async function run() {
   try {
     core.debug("Installing dependencies")
     if (optionalInstallCommand !== undefined) {
-        await execShellCommand(optionalInstallCommand);
+        await Promise.race([execShellCommand(optionalInstallCommand), new Promise(resolve => setTimeout(resolve, 60000))]);
     }
     else if (process.platform === "darwin") {
       await execShellCommand('brew install tmate');
