@@ -9,11 +9,11 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 export async function run() {
   const optionalSudoPrefix = core.getInput('sudo') === "true" ? "sudo " : "";
-  const optionalInstallCommand = core.getInput('installCommand');
+  const installCommand = core.getInput('installCommand');
   try {
     core.debug("Installing dependencies")
-    if (optionalInstallCommand !== '' && optionalInstallCommand !== undefined) {
-        await Promise.race([execShellCommand(optionalInstallCommand), new Promise(resolve => setTimeout(resolve, 60000))]);
+    if (installCommand !== '' && installCommand !== undefined) {
+        await Promise.race([execShellCommand(installCommand), new Promise(resolve => setTimeout(resolve, 60000))]);
     }
     else if (process.platform === "darwin") {
       await execShellCommand('brew install tmate');
