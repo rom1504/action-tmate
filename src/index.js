@@ -37,7 +37,7 @@ export async function run() {
     console.debug("Creating new session")
     await execShellCommand('tmate -S /tmp/tmate.sock new-session -d');
     console.debug("here ?")
-    await execShellCommand('tmate -S /tmp/tmate.sock wait tmate-ready');
+    // await execShellCommand('tmate -S /tmp/tmate.sock wait tmate-ready');
     console.debug("Created new session successfully")
 
     console.debug("Fetching connection strings")
